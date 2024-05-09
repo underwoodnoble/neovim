@@ -37,7 +37,7 @@ local on_attach = function(client, bufnr)
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
@@ -46,7 +46,7 @@ vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wl', function()
         print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-    end, bufopts)
+        end, bufopts)
     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
@@ -60,9 +60,8 @@ end
 -- How to add LSP for a specific language?
 -- 1. use `:Mason` to install corresponding LSP
 -- 2. add configuration below
-lspconfig.pylsp.setup({
-	on_attach = on_attach,
-})
+lspconfig.pylsp.setup({on_attach = on_attach})
+
 
 
 -- Syntax highlighting
@@ -77,7 +76,7 @@ vim.api.nvim_create_autocmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEn
 require'nvim-treesitter.configs'.setup {
   -- 安装 language parser
   -- :TSInstallInfo 命令查看支持的语言
-  ensure_installed = {"html", "css", "vim", "lua", "javascript", "typescript", "tsx"},
+  ensure_installed = {"python", "vim", "lua", "c", "cpp"},
   -- 启用代码高亮功能
   highlight = {
     enable = true,
